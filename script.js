@@ -7,8 +7,8 @@ const diff_enum = {
 };
 
 // Utility Functions
-const mv_x = (what, x) => what.style.left = x,
-    mv_y = (what, y) => what.style.top = y,
+const mv_x = (what, x) => what.style.left = x + "px",
+    mv_y = (what, y) => what.style.top = y + "px",
     rand = (limit) => Math.random() * limit,
     inRange = (lower, upper, what) => what >= lower && what <= upper;
 
@@ -31,8 +31,8 @@ const rand_x = () => rand(window.innerWidth - catch_width),
 
 // Initial State
 catch_me.style.position = "absolute";
-catch_me.style.height = catch_height + 'px';
-catch_me.style.width = catch_width + 'px';
+catch_me.style.height = catch_height + "px";
+catch_me.style.width = catch_width + "px";
 catch_me.style.backgroundColor = "#555";
 mv_catch_x();
 mv_catch_y();
