@@ -33,7 +33,7 @@ const rand_x = () => rand(window.innerWidth - catch_width),
 catch_me.style.position = "absolute";
 catch_me.style.height = catch_height + "px";
 catch_me.style.width = catch_width + "px";
-catch_me.style.backgroundColor = "#555";
+catch_me.style.backgroundColor = "#CE1836";
 mv_catch_x();
 mv_catch_y();
 
@@ -43,6 +43,11 @@ catch_me.addEventListener("mouseenter", () => {
     mv_catch_x();
     mv_catch_y();
     incr_counter();
+    if (counter.innerHTML%10==0) {
+      counter.style.fontSize = (counter.innerHTML)*3+'pt';
+      counter.style.width = (counter.innerHTML)*4+'pt';
+      counter.style.height = (counter.innerHTML)*4+'pt';
+    }
 });
 
 // Track mouse movent inside body.
