@@ -26,7 +26,7 @@ const catch_me = document.getElementById("catch_me"),
 const catch_height = 50,
     catch_width = 100,
     difficulty = typeof(difficulty_param) !== 'undefined' ? difficulty_param : diff_enum.HARD; // CHANGE THIS FOR MORE FUN
-    alert(difficulty)
+    
 const incr_counter = () => counter.innerText = +counter.innerText + 1;
 // Next positions should be within the visible portion of the window.
 const rand_x = () => rand(window.innerWidth - catch_width),
