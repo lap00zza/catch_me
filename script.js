@@ -33,7 +33,7 @@ const mv_catch_y = () => mv_y(catch_me, rand_y());
 catch_me.style.position = "absolute";
 catch_me.style.height = catch_height;
 catch_me.style.width = catch_width;
-catch_me.style.backgroundColor = "#555"
+catch_me.style.backgroundColor = "#555";
 mv_catch_x();
 mv_catch_y();
 
@@ -45,7 +45,7 @@ catch_me.addEventListener("mouseenter", () => {
     incr_counter();
 });
 
-// Track mousemovent inside body.
+// Track mouse movent inside body.
 body.addEventListener("mousemove", e => {
     const delta_x = e.offsetX - catch_me.offsetLeft;
     const delta_y = e.offsetY - catch_me.offsetTop;
