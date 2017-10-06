@@ -1,3 +1,32 @@
+// Chronometer
+var count = 0;
+var clear_time;
+var seconds = 0, minutes = 0, hours = 0;
+var clear_state;
+var chron_secs, chron_mins, chron_hours;
+
+function start_chron(){
+    if(seconds === 60){
+        seconds = 0;
+        minutes = minutes + 1;
+     }
+      
+    chron_mins = (minutes < 10) ? ('0' + minutes + ': ') : (minutes + ': ');
+
+    if(minutes === 60){
+        minutes = 0;
+        hours = hours + 1;
+    }
+    chron_hours = ( hours < 10 ) ? ( '0' + hours + ': ' ) : ( hours + ': ' );
+    chron_secs = (seconds < 10) ? ('0' + seconds) : (seconds);
+
+    // Display the chronometer 
+    var chron = document .getElementById("chronometer");
+    chron.innerHTML = 'Time: ' + gethours + mins + secs;
+    seconds++;
+    clear_time = setTimeout("start_chron()", 1000);
+}
+
 // Available difficulties
 const diff_enum = {
     EASY: 0,
