@@ -15,7 +15,7 @@ const inRange = (lower, upper, what) => what >= lower && what <= upper;
 // Selectors. Duh!
 const catch_me = document.getElementById("catch_me");
 const counter = document.getElementById("counter");
-const body = document.getElementsByTagName("body")[0];
+const body = document.querySelectorAll(".body")[0];
 
 // Useful global values
 const catch_height = 50;

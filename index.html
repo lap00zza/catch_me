@@ -4,6 +4,7 @@
  -->
 <html>
 <head>
+    <meta charset="utf-8">
     <style>
         #counter {
             position: absolute;
@@ -15,12 +16,25 @@
             text-align: right;
             z-index: 100;
         }
+        .body {
+            /* background: papayawhip; */
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+        }
     </style>
 </head>
-
 <body>
-    <div id="counter">0</div>
-    <div id="catch_me"></div>
+    <!-- 
+    Why wrap? Coz firefox is a princess and cant track mouseover
+    on the body. Screw you sly fox.
+    -->
+    <div class="body">
+        <div id="counter">0</div>
+        <div id="catch_me"></div>
+    </div>
     <audio src="http://www.nyan.cat/music/technyancolor.ogg" autoplay loop></audio>
 </body>
 <script src="./script.js"></script>
