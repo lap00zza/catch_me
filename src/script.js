@@ -26,7 +26,7 @@ const start_chron = () => {
     // Formatting hours to show in chronometer
     chron_hours = (hours < 10) ? ("0" + hours + " : ") : (hours + " : ");
 
-    // Display the chronometer 
+    // Display the chronometer
     const chron = document.getElementById("chronometer");
     chron.innerHTML = "Time: " + chron_hours + chron_mins + chron_secs + chron_millis;
     milliseconds += 100;
@@ -67,7 +67,9 @@ const mv_x = (what, x) => what.style.left = x + "px",
 // Selectors. Duh!
 const catch_me = document.getElementById("catch_me"),
     counter = document.getElementById("counter"),
-    body = document.querySelectorAll(".body")[0];
+    body = document.querySelectorAll(".body")[0],
+    diff_btns = document.querySelectorAll(".diff-btn"),
+    active_diff_btn = document.getElementById(diff_param);
 
 // Useful global values
 const catch_height = 50,
@@ -82,6 +84,7 @@ const rand_x = () => rand(window.innerWidth - catch_width),
     mv_catch_y = () => mv_y(catch_me, rand_y());
 
 // Initial State
+active_diff_btn.setAttribute("disabled", "disabled");
 start_chron();
 catch_me.style.position = "absolute";
 catch_me.style.height = catch_height + "px";
@@ -109,4 +112,11 @@ body.addEventListener("mousemove", e => {
         mv_catch_y();
         // console.log(`x: ${delta_x} y: ${delta_y}`);
     }
+});
+
+diff_btns.forEach(el => {
+    el.addEventListener("click", e => {
+        url.searchParams.set("difficulty", e.target.id);
+        window.location.replace(url);
+    })
 });

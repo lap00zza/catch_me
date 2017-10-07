@@ -30,6 +30,12 @@
             text-align: right;
             z-index: 100;
         }
+        .difficulty {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            z-index: 100;
+        }
         .body {
             background: #009989;
             position: absolute;
@@ -49,6 +55,12 @@
         <div id="counter">0</div>
         <div id="catch_me"></div>
         <div id="chronometer"></div>
+        <div class="difficulty">
+            <button class="diff-btn" id="EASY">Easy</button>
+            <button class="diff-btn" id="MEDIUM">Medium</button>
+            <button class="diff-btn" id="HARD">Hard</button>
+            <button class="diff-btn" id="EXTREME">Extreme</button>
+        </div>
     </div>
     <audio src="http://www.nyan.cat/music/technyancolor.ogg" autoplay loop></audio>
 </body>
