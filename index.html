@@ -11,14 +11,30 @@
             position: absolute;
             right: 10px;
             top: 10px;
-            width: 50px;
-            height: 50px;
+            height: 40px;
+            padding: 0 20px;
             font-size: 25pt;
             color: white;
             text-align: center;
             background-color: #A3A948;
             border-radius: 20px;
             border: 1px solid #660066;
+        }
+        #chronometer {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            width: 250px;
+            font-size: 18pt;
+            background: rgb(132, 133, 223);
+            text-align: right;
+            z-index: 100;
+        }
+        .difficulty {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            z-index: 100;
         }
         .body {
             background: #009989;
@@ -38,6 +54,13 @@
     <div class="body">
         <div id="counter">0</div>
         <div id="catch_me"></div>
+        <div id="chronometer"></div>
+        <div class="difficulty">
+            <button class="diff-btn" id="EASY">Easy</button>
+            <button class="diff-btn" id="MEDIUM">Medium</button>
+            <button class="diff-btn" id="HARD">Hard</button>
+            <button class="diff-btn" id="EXTREME">Extreme</button>
+        </div>
     </div>
     <audio src="http://www.nyan.cat/music/technyancolor.ogg" autoplay loop></audio>
 </body>
