@@ -27,6 +27,7 @@ const catch_me = document.getElementById("catch_me"),
     level_num = document.getElementById("level_num"),
     level_description = document.getElementById("level_description"),
     time_remaining = document.getElementById("time_remaining");
+    toggle_button = document.getElementById("MUSIC_TOGGLE");
 
 // Useful global values
 const catch_height = 50,
@@ -93,6 +94,17 @@ diff_btns.forEach(el => {
         url.searchParams.set("difficulty", e.target.id);
         window.location.replace(url);
     })
+});
+
+toggle_button.addEventListener("click", e => {
+    source = document.getElementsByTagName("audio")[0];
+    // if not muted then mute
+    if (!source.muted) {
+        source.muted = true;
+    }
+    else {
+        source.muted = false;
+    }
 });
 
 
