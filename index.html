@@ -7,10 +7,17 @@
 <head>
     <meta charset="utf-8">
     <style>
+        #header{
+            background-color: #009989;
+            display: block;
+            height: 100px;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-bottom: 8px;
+            padding-top: 1px;
+        }
         #counter {
-            position: absolute;
-            right: 10px;
-            top: 10px;
+            position: relative;
             height: 40px;
             padding: 0 20px;
             font-size: 25pt;
@@ -19,16 +26,35 @@
             background-color: #A3A948;
             border-radius: 20px;
             border: 1px solid #660066;
-        }
-        #chronometer {
-            position: absolute;
-            left: 10px;
-            top: 10px;
-            width: 250px;
-            font-size: 18pt;
-            background: rgb(132, 133, 223);
-            text-align: right;
             z-index: 100;
+            display: inline-block;
+            float: right;
+        }
+        #level_num {
+            float: left;
+            display: inline-block;
+            z-index: 100;
+            position: relative;
+            height: 40px;
+            padding: 0 20px;
+            font-size: 25pt;
+            color: white;
+            text-align: center;
+            background-color: #A3A948;
+            border-radius: 20px;
+            border: 1px solid #660066;
+
+        }
+        #level_description {
+            text-align: center;
+            z-index: 100;
+            position: relative;
+        }
+        #time_remaining {
+            text-align: center;
+            font-size: 26pt;
+            z-index: 100;
+            position: relative;
         }
         .difficulty {
             position: absolute;
@@ -56,6 +82,13 @@
             60% {transform: scaleX(1.15) scaleY(0.85);}
             100% {transform: scale(1);}
         }
+        h2 {
+            height: 40px;
+            padding: 0 20px;
+            font-size: 16pt;
+            color: white;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -63,10 +96,16 @@
     Why wrap? Coz firefox is a princess and cant track mouseover
     on the body. Screw you sly fox.
     -->
+    <div id="header">
+        <div id="level">
+            <h1 id="level_num"></h1>
+            <h1 id="counter" class="animated">0</h1>
+            <h2 id="level_description"></h2>
+            <h2 id="time_remaining"></h2>
+        </div>
+    </div>
     <div class="body">
-        <div id="counter">0</div>
         <div id="catch_me"></div>
-        <div id="chronometer"></div>
         <div class="difficulty">
             <button class="diff-btn" id="EASY">Easy</button>
             <button class="diff-btn" id="MEDIUM">Medium</button>

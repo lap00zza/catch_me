@@ -1,50 +1,3 @@
-/* --- Chronometer --- */
-// Chronometer variables
-let clear_time;
-let milliseconds = 0, seconds = 0, minutes = 0, hours = 0;
-let chron_millis, chron_secs, chron_mins, chron_hours;
-
-const start_chron = () => {
-    // Formatting milliseconds to show in chronometer
-    chron_millis = (milliseconds < 1000) ? ("0" + milliseconds) : (milliseconds);
-    if (milliseconds === 1000) {
-        milliseconds = 0;
-        seconds++;
-    }
-    // Formatting seconds to show in chronometer
-    chron_secs = (seconds < 10) ? ("0" + seconds + " : ") : (seconds + " : ");
-    if (seconds === 60) {
-        seconds = 0;
-        minutes++;
-    }
-    // Formatting minutes to show in chronometer
-    chron_mins = (minutes < 10) ? ("0" + minutes + " : ") : (minutes + " : ");
-    if (minutes === 60) {
-        minutes = 0;
-        hours++;
-    }
-    // Formatting hours to show in chronometer
-    chron_hours = (hours < 10) ? ("0" + hours + " : ") : (hours + " : ");
-
-    // Display the chronometer
-    const chron = document.getElementById("chronometer");
-    chron.innerHTML = "Time: " + chron_hours + chron_mins + chron_secs + chron_millis;
-    milliseconds += 100;
-    clear_time = setTimeout(start_chron, 100);
-};
-
-const reset_chron = () => {
-    milliseconds = 0;
-    seconds = 0;
-    minutes = 0;
-    hours = 0;
-};
-
-const stop_chron = () => {
-    clearTimeout(clear_time)
-};
-/* ---~~~--- */
-
 // Available difficulties
 const diff_enum = {
     EASY: 0,
@@ -56,7 +9,7 @@ const diff_enum = {
 //Setting difficulty from url
 const url = new URL(window.location);
 let diff_param = url.searchParams.get("difficulty");
-diff_param =  diff_param ? diff_param.toUpperCase() : "HARD";
+diff_param = diff_param ? diff_param.toUpperCase() : "HARD";
 
 // Utility Functions
 const mv_x = (what, x) => what.style.left = x + "px",
@@ -70,7 +23,10 @@ const catch_me = document.getElementById("catch_me"),
     body = document.querySelectorAll(".body")[0],
     diff_btns = document.querySelectorAll(".diff-btn"),
     active_diff_btn = document.getElementById(diff_param),
-    x = document.getElementById("count-sound");
+    x = document.getElementById("count-sound"),
+    level_num = document.getElementById("level_num"),
+    level_description = document.getElementById("level_description"),
+    time_remaining = document.getElementById("time_remaining");
 
 // Useful global values
 const catch_height = 50,
@@ -78,11 +34,15 @@ const catch_height = 50,
     difficulty = diff_enum[diff_param];
 
 const incr_counter = () => {
-  counter.classList.remove("animated");
-  counter.innerText = +counter.innerText + 1;
-  counter.classList.add("animated");
-  x.play();
-  setTimeout(() => {x.pause();x.currentTime = 0;},800);
+    counter.classList.remove("animated");
+    count++;
+    setCounter(count);
+    counter.classList.add("animated");
+    x.play();
+    setTimeout(() => {
+        x.pause();
+        x.currentTime = 0;
+    }, 800);
 };
 // Next positions should be within the visible portion of the window.
 const rand_x = () => rand(window.innerWidth - catch_width),
@@ -90,9 +50,16 @@ const rand_x = () => rand(window.innerWidth - catch_width),
     mv_catch_x = () => mv_x(catch_me, rand_x()),
     mv_catch_y = () => mv_y(catch_me, rand_y());
 
+
+// Variables for level scoring/timing
+let current_level = 1;
+let count = 0;
+let total_score = 0;
+let target_score, target_time, target_time_millis;
+
 // Initial State
 active_diff_btn.setAttribute("disabled", "disabled");
-start_chron();
+// start_chron();
 catch_me.style.position = "absolute";
 catch_me.style.height = catch_height + "px";
 catch_me.style.width = catch_width + "px";
@@ -127,3 +94,82 @@ diff_btns.forEach(el => {
         window.location.replace(url);
     })
 });
+
+
+const setTargets = () => {
+    target_time = 60; // seconds
+    target_time_millis = target_time * 1000;
+    target_score = current_level * 5;
+};
+
+const setCounter = count => {
+    counter.innerHTML = "Score: " + count;
+};
+
+const setLevel = level => {
+    level_num.innerHTML = "Level: " + level;
+};
+
+const setLevelDescription = level => {
+    setTargets();
+    level_description.innerHTML = "Touch " + target_score + " times in " + target_time + " seconds";
+};
+
+const displayTimer = time => {
+    let tr = Math.round(time / 1000);
+    time_remaining.innerHTML = tr + "s";
+};
+
+const advanceLevel = () => {
+    current_level++;
+};
+
+const end_game = () => {
+    total_score += count;
+    alert("You passed " + (current_level - 1) + " levels and earned a score of " + total_score + "!");
+};
+
+const startNewLevel = () => {
+    setLevel(current_level);
+    setCounter(0);
+    setLevelDescription(current_level);
+    mv_catch_x();
+    mv_catch_y();
+    total_score += count;
+    count = 0;
+
+    alert("Ready...Set...Go!");
+
+    // Starting value for level timer,
+    const level_start = new Date().getTime();
+
+    const t = setInterval(function () {
+        // Get today's date and time
+        const now = new Date().getTime();
+        let timer = target_time_millis + (level_start - now);
+        displayTimer(timer);
+
+        if (timer < 0) {
+            clearInterval(t);
+            alert("Time's Up!");
+            end_game();
+        }
+        if (count >= target_score) {
+            alert("Congratulations! You have leveled up.");
+            clearInterval(t);
+            advanceLevel();
+            startNewLevel();
+        }
+    }, 100);
+};
+
+const game = () => {
+    // Initial State
+    catch_me.style.position = "absolute";
+    catch_me.style.height = catch_height + "px";
+    catch_me.style.width = catch_width + "px";
+    catch_me.style.backgroundColor = "#555";
+    startNewLevel();
+};
+
+game();
