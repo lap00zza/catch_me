@@ -1,47 +1,49 @@
+/* --- Chronometer --- */
 // Chronometer variables
-var clear_time;
-var milliseconds = 0, seconds = 0, minutes = 0, hours = 0;
-var chron_millis, chron_secs, chron_mins, chron_hours;
+let clear_time;
+let milliseconds = 0, seconds = 0, minutes = 0, hours = 0;
+let chron_millis, chron_secs, chron_mins, chron_hours;
 
-function start_chron(){
-    // Formating milliseconds to show in chronometer
-    chron_millis = (milliseconds < 1000) ? ('0' + milliseconds) : (milliseconds);
-    if(milliseconds == 1000){
+const start_chron = () => {
+    // Formatting milliseconds to show in chronometer
+    chron_millis = (milliseconds < 1000) ? ("0" + milliseconds) : (milliseconds);
+    if (milliseconds === 1000) {
         milliseconds = 0;
-        seconds = seconds +1;
+        seconds++;
     }
-    // Formating seconds to show in chronometer
-    chron_secs = (seconds < 10) ? ('0' + seconds + ' : ') : (seconds + ' : ');
-    if(seconds === 60){
+    // Formatting seconds to show in chronometer
+    chron_secs = (seconds < 10) ? ("0" + seconds + " : ") : (seconds + " : ");
+    if (seconds === 60) {
         seconds = 0;
-        minutes = minutes + 1;
-     }
-    // Formating minutes to show in chronometer
-    chron_mins = (minutes < 10) ? ('0' + minutes + ' : ') : (minutes + ' : ');
-    if(minutes === 60){
-        minutes = 0;
-        hours = hours + 1;
+        minutes++;
     }
-    // Formating hours to show in chronometer
-    chron_hours = ( hours < 10 ) ? ( '0' + hours + ' : ' ) : ( hours + ' : ' );
+    // Formatting minutes to show in chronometer
+    chron_mins = (minutes < 10) ? ("0" + minutes + " : ") : (minutes + " : ");
+    if (minutes === 60) {
+        minutes = 0;
+        hours++;
+    }
+    // Formatting hours to show in chronometer
+    chron_hours = (hours < 10) ? ("0" + hours + " : ") : (hours + " : ");
 
     // Display the chronometer 
-    var chron = document.getElementById("chronometer");
-    chron.innerHTML = 'Time: ' + chron_hours + chron_mins + chron_secs + chron_millis;
-    milliseconds+=100;
-    clear_time = setTimeout("start_chron()", 100);
-}
+    const chron = document.getElementById("chronometer");
+    chron.innerHTML = "Time: " + chron_hours + chron_mins + chron_secs + chron_millis;
+    milliseconds += 100;
+    clear_time = setTimeout(start_chron, 100);
+};
 
-function reset_chron(){
+const reset_chron = () => {
     milliseconds = 0;
     seconds = 0;
     minutes = 0;
     hours = 0;
-}
+};
 
-function stop_chron(){
+const stop_chron = () => {
     clearTimeout(clear_time)
-}
+};
+/* ---~~~--- */
 
 // Available difficulties
 const diff_enum = {
