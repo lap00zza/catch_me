@@ -96,11 +96,6 @@ catch_me.addEventListener("mouseenter", () => {
     mv_catch_x();
     mv_catch_y();
     incr_counter();
-    if (counter.innerHTML % 10 === 0) {
-        counter.style.fontSize = (counter.innerHTML) * 3 + "pt";
-        counter.style.width = (counter.innerHTML) * 4 + "pt";
-        counter.style.height = (counter.innerHTML) * 4 + "pt";
-    }
 });
 
 // Track mouse movement inside body.
