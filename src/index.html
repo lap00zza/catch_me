@@ -97,6 +97,10 @@
           border: 1px solid #660066;
           text-align: center;
         }
+        .diff-btn.disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
@@ -115,10 +119,10 @@
     <div class="body">
         <div id="catch_me"></div>
         <div class="difficulty">
-            <a class="diff-btn" id="EASY">Easy</a>
-            <a class="diff-btn" id="MEDIUM">Medium</a>
-            <a class="diff-btn" id="HARD">Hard</a>
-            <a class="diff-btn" id="EXTREME">Extreme</a>
+            <button class="diff-btn" id="EASY">Easy</button>
+            <button class="diff-btn" id="MEDIUM">Medium</button>
+            <button class="diff-btn" id="HARD">Hard</button>
+            <button class="diff-btn" id="EXTREME">Extreme</button>
         </div>
     </div>
     <audio src="http://www.nyan.cat/music/technyancolor.ogg" autoplay loop></audio>
