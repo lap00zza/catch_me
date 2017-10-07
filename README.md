@@ -8,7 +8,7 @@ Is a game to test your speed, do you think you are fast with your mouse?
 Every time you put the arrow inside the box you got a point.
 Enjoy the game with the [Nyan Cat](http://www.nyan.cat/) song! :rainbow:
 
-![](https://i.imgur.com/TGRP43S.gif)
+![](https://image.ibb.co/jbZymG/2017_10_08_00_59_45.gif)
 
 ## Steps:
 * If you want to play, check out: https://lap00zza.github.io/catch_me/
