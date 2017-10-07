@@ -9,7 +9,7 @@ const diff_enum = {
 //Setting difficulty from url
 const url = new URL(window.location);
 let diff_param = url.searchParams.get("difficulty");
-diff_param =  diff_param ? diff_param.toUpperCase() : "HARD";
+diff_param = diff_param ? diff_param.toUpperCase() : "HARD";
 
 // Utility Functions
 const mv_x = (what, x) => what.style.left = x + "px",
@@ -34,12 +34,15 @@ const catch_height = 50,
     difficulty = diff_enum[diff_param];
 
 const incr_counter = () => {
-  counter.classList.remove("animated");
-  count++;
-  setCounter(count);
-  counter.classList.add("animated");
-  x.play();
-  setTimeout(() => {x.pause();x.currentTime = 0;},800);
+    counter.classList.remove("animated");
+    count++;
+    setCounter(count);
+    counter.classList.add("animated");
+    x.play();
+    setTimeout(() => {
+        x.pause();
+        x.currentTime = 0;
+    }, 800);
 };
 // Next positions should be within the visible portion of the window.
 const rand_x = () => rand(window.innerWidth - catch_width),
@@ -93,41 +96,40 @@ diff_btns.forEach(el => {
 });
 
 
-let setTargets = () => {
+const setTargets = () => {
     target_time = 60; // seconds
     target_time_millis = target_time * 1000;
     target_score = current_level * 5;
-}
+};
 
-let setCounter = (count) => {
+const setCounter = count => {
     counter.innerHTML = "Score: " + count;
-}
+};
 
-let setLevel = (level) => {
+const setLevel = level => {
     level_num.innerHTML = "Level: " + level;
-}
+};
 
-let setLevelDescription = (level) => {
+const setLevelDescription = level => {
     setTargets();
     level_description.innerHTML = "Touch " + target_score + " times in " + target_time + " seconds";
-}
+};
 
-let displayTimer = (time) => {
-    let tr = Math.round(time/1000);
-    time_remaining.innerHTML = tr+"s";
-}
+const displayTimer = time => {
+    let tr = Math.round(time / 1000);
+    time_remaining.innerHTML = tr + "s";
+};
 
-let advanceLevel = () => {
+const advanceLevel = () => {
     current_level++;
-}
+};
 
-let end_game = () => {
+const end_game = () => {
     total_score += count;
     alert("You passed " + (current_level - 1) + " levels and earned a score of " + total_score + "!");
-}
+};
 
-let startNewLevel = () => {
-
+const startNewLevel = () => {
     setLevel(current_level);
     setCounter(0);
     setLevelDescription(current_level);
@@ -136,23 +138,19 @@ let startNewLevel = () => {
     total_score += count;
     count = 0;
 
-
     alert("Ready...Set...Go!");
-    
+
     // Starting value for level timer,
-    let level_start = new Date().getTime();
+    const level_start = new Date().getTime();
 
+    const t = setInterval(function () {
+        // Get today's date and time
+        const now = new Date().getTime();
+        let timer = target_time_millis + (level_start - now);
+        displayTimer(timer);
 
-    var t = setInterval(function() {
-
-          // Get todays date and time
-          var now = new Date().getTime();
-          let timer = target_time_millis + (level_start - now);
-          displayTimer(timer);
-
-
-          if (timer < 0 ) {
-            clearInterval(t);            
+        if (timer < 0) {
+            clearInterval(t);
             alert("Time's Up!");
             end_game();
         }
@@ -163,18 +161,15 @@ let startNewLevel = () => {
             startNewLevel();
         }
     }, 100);
-}
+};
 
-let game = () => {
+const game = () => {
     // Initial State
     catch_me.style.position = "absolute";
     catch_me.style.height = catch_height + "px";
     catch_me.style.width = catch_width + "px";
     catch_me.style.backgroundColor = "#555";
-    
-
     startNewLevel();
-
-}
+};
 
 game();
