@@ -1,3 +1,7 @@
+Looking for ways to participate in [Hacktoberfest](https://hacktoberfest.digitalocean.com/) ? We welcome all contributions.
+
+<hr>
+
 # Catch Me
 Is a game to test your speed, do you think you are fast with your mouse?
 
