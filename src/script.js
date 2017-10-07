@@ -69,14 +69,21 @@ const catch_me = document.getElementById("catch_me"),
     counter = document.getElementById("counter"),
     body = document.querySelectorAll(".body")[0],
     diff_btns = document.querySelectorAll(".diff-btn"),
-    active_diff_btn = document.getElementById(diff_param);
+    active_diff_btn = document.getElementById(diff_param),
+    x = document.getElementById("count-sound");
 
 // Useful global values
 const catch_height = 50,
     catch_width = 100,
     difficulty = diff_enum[diff_param];
-    
-const incr_counter = () => counter.innerText = +counter.innerText + 1;
+
+const incr_counter = () => {
+  counter.classList.remove("animated");
+  counter.innerText = +counter.innerText + 1;
+  counter.classList.add("animated");
+  x.play();
+  setTimeout(() => {x.pause();x.currentTime = 0;},800);
+};
 // Next positions should be within the visible portion of the window.
 const rand_x = () => rand(window.innerWidth - catch_width),
     rand_y = () => rand(window.innerHeight - catch_height),
