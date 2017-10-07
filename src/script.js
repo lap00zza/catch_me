@@ -55,8 +55,8 @@ const diff_enum = {
 
 //Setting difficulty from url
 const url = new URL(window.location);
-let difficulty_param = url.searchParams.get("difficulty");
-difficulty_param = diff_enum[difficulty_param.toUpperCase()]
+let diff_param = url.searchParams.get("difficulty");
+diff_param =  diff_param ? diff_param.toUpperCase() : "HARD";
 
 // Utility Functions
 const mv_x = (what, x) => what.style.left = x + "px",
@@ -72,7 +72,7 @@ const catch_me = document.getElementById("catch_me"),
 // Useful global values
 const catch_height = 50,
     catch_width = 100,
-    difficulty = typeof(difficulty_param) !== 'undefined' ? difficulty_param : diff_enum.HARD; // CHANGE THIS FOR MORE FUN
+    difficulty = diff_enum[diff_param];
     
 const incr_counter = () => counter.innerText = +counter.innerText + 1;
 // Next positions should be within the visible portion of the window.
