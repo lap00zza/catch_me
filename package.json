@@ -1,0 +1,11 @@
+{
+  "name": "catch_me",
+  "version": "1.0.0",
+  "description": "A silly little game",
+  "author": "Jewel Mahanta",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lap00zza/catch_me"
+  }
+}
