@@ -9,7 +9,6 @@
 }
 #counter {
     position: relative;
-    height: 40px;
     padding: 0 20px;
     font-size: 25pt;
     color: white;
@@ -26,7 +25,6 @@
     display: inline-block;
     z-index: 100;
     position: relative;
-    height: 40px;
     padding: 0 20px;
     font-size: 25pt;
     color: white;
@@ -91,4 +89,25 @@ h2 {
 .diff-btn.disabled {
     opacity: 0.6;
     cursor: not-allowed;
+}
+.difficulty>button {
+    cursor: pointer;
+}
+.difficulty>button:hover {
+    background-color: #8a8f35; 
+}
+
+@media (max-width: 479px) {
+    #level {
+        display: flex;
+        flex-direction: column;
+    }
+    #counter {
+        order: 2
+    }
+    #level>* {
+        flex: 1;
+        margin: 10px 0;
+        height: auto;
+  }
 }
