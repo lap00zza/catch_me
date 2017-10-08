@@ -60,7 +60,7 @@ let target_score, target_time, target_time_millis;
 let muted = false;
 
 // Initial State
-active_diff_btn.setAttribute("disabled", "disabled");
+active_diff_btn.classList.add("disabled");
 // start_chron();
 catch_me.style.position = "absolute";
 catch_me.style.height = catch_height + "px";
