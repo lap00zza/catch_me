@@ -125,7 +125,7 @@ const advanceLevel = () => {
 
 const end_game = () => {
     total_score += count;
-    swal("Congratualtions!", "You passed " + (current_level - 1) + " levels and earned a score of " + total_score + "!");
+    swal("Time's up!", "You passed " + (current_level - 1) + " levels and earned a score of " + total_score + "!");
 };
 const startNewLevel = () => {
     setLevel(current_level);
@@ -136,7 +136,7 @@ const startNewLevel = () => {
     total_score += count;
     count = 0;
 
-    swal("Ready...Set...Go!");
+    swal("New level");
 
     // Starting value for level timer,
     const level_start = new Date().getTime();
