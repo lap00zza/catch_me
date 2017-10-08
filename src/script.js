@@ -6,6 +6,9 @@ const diff_enum = {
     EXTREME: 100,
 };
 
+// Flag: 0 => Will not restart game after game ends.; 1=> otherwise.
+window.restart_after_end = 0;
+
 //Setting difficulty from url
 const url = new URL(window.location);
 let diff_param = url.searchParams.get("difficulty");
@@ -27,6 +30,48 @@ const catch_me = document.getElementById("catch_me"),
     level_num = document.getElementById("level_num"),
     level_description = document.getElementById("level_description"),
     time_remaining = document.getElementById("time_remaining");
+
+// Pop-Up
+const popup_element = document.querySelectorAll(".popup")[0],
+    message_element = document.querySelectorAll(".message")[0],
+    overlay = document.querySelectorAll(".overlay")[0],
+    continue_btn = document.getElementById("continue_btn");
+const  popup = (message) => {
+    catch_me.style.display = "none";
+    overlay.style.display = "block";
+    message_element.innerHTML = message;
+    popup_element.style.display = "block";
+};
+
+// on click event for OK button.
+continue_btn.addEventListener("click", e => {
+    catch_me.style.display = "block";
+    overlay.style.display = "none";
+    popup_element.style.display = "none";
+
+    if((window.status != 'end_game') || (window.restart_after_end == 1)){
+        // Starting value for level timer,
+        const level_start = new Date().getTime();
+
+        const t = setInterval(function () {
+            // Get today's date and time
+            const now = new Date().getTime();
+            let timer = target_time_millis + (level_start - now);
+            displayTimer(timer);
+
+            if (timer < 0) {
+                clearInterval(t);
+                window.status = 'end_game';
+                end_game();
+            }
+            if (count >= target_score) {
+                clearInterval(t);
+                advanceLevel();
+                startNewLevel();
+            }
+        }, 100);
+    }
+});
 
 // Useful global values
 const catch_height = 50,
@@ -97,7 +142,7 @@ diff_btns.forEach(el => {
 
 
 const setTargets = () => {
-    target_time = 60; // seconds
+    target_time = 15; // seconds
     target_time_millis = target_time * 1000;
     target_score = current_level * 5;
 };
@@ -126,7 +171,7 @@ const advanceLevel = () => {
 
 const end_game = () => {
     total_score += count;
-    alert("You passed " + (current_level - 1) + " levels and earned a score of " + total_score + "!");
+    popup("Time's Up! <br> You passed " + (current_level - 1) + " levels and earned a score of " + total_score + "!");
 };
 
 const startNewLevel = () => {
@@ -137,30 +182,12 @@ const startNewLevel = () => {
     mv_catch_y();
     total_score += count;
     count = 0;
+    level_message = "Ready...Set...Go!";
+    if(current_level > 1){
+        level_message = "Congratulations! You have leveled up.<br>" + level_message;
+    }
+    popup(level_message);
 
-    alert("Ready...Set...Go!");
-
-    // Starting value for level timer,
-    const level_start = new Date().getTime();
-
-    const t = setInterval(function () {
-        // Get today's date and time
-        const now = new Date().getTime();
-        let timer = target_time_millis + (level_start - now);
-        displayTimer(timer);
-
-        if (timer < 0) {
-            clearInterval(t);
-            alert("Time's Up!");
-            end_game();
-        }
-        if (count >= target_score) {
-            alert("Congratulations! You have leveled up.");
-            clearInterval(t);
-            advanceLevel();
-            startNewLevel();
-        }
-    }, 100);
 };
 
 const game = () => {

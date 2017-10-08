@@ -49,12 +49,14 @@
             text-align: center;
             z-index: 100;
             position: relative;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
         }
         #time_remaining {
             text-align: center;
             font-size: 26pt;
             z-index: 100;
             position: relative;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
         }
         .difficulty {
             position: absolute;
@@ -89,6 +91,46 @@
             color: white;
             text-align: center;
         }
+        .popup{
+            left: calc( 50% - 150px );
+            position: absolute;
+            top: 10%;
+            background: white;
+            width: 300px;
+            height: 150px;
+            z-index: 102;
+            border-radius: 10px;
+            display: none;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        .popup .message_box{
+            width: 100%;
+            display: block;
+            height: calc( 100% - 25px);
+            text-align: center;
+            position: relative;
+        }
+        .popup .message_box .message{
+            display: block;
+            margin: auto;
+            padding: 30px;
+        }
+        .popup button{
+            margin: auto;
+            display: block;
+            background-color: #A3A948;
+            border: 1px solid black;
+            border-radius: 15px;
+            width: 60px;
+            cursor: pointer;
+        }
+        .overlay{
+            z-index: 101;
+            background-color: grey;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -111,6 +153,11 @@
             <button class="diff-btn" id="MEDIUM">Medium</button>
             <button class="diff-btn" id="HARD">Hard</button>
             <button class="diff-btn" id="EXTREME">Extreme</button>
+        </div>
+        <div class="overlay"></div>
+        <div class="popup">
+            <div class="message_box"><div class="message">Sample Message</div></div>
+            <button id="continue_btn">OK</button>
         </div>
     </div>
     <audio src="http://www.nyan.cat/music/technyancolor.ogg" autoplay loop></audio>
