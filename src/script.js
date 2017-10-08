@@ -166,7 +166,6 @@ const game = () => {
     catch_me.style.position = "absolute";
     catch_me.style.height = catch_height + "px";
     catch_me.style.width = catch_width + "px";
-    catch_me.style.backgroundColor = "#555";
     startNewLevel();
 };
 
