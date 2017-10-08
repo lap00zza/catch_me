@@ -126,8 +126,8 @@ const advanceLevel = () => {
 
 const end_game = () => {
     total_score += count;
-    alert("You passed " + (current_level - 1) + " levels and earned a score of " + total_score + "!");
-};
+    
+    alerty.alert("You passed " + (current_level - 1) + " levels and earned a score of " + total_score + "!")
 
 const startNewLevel = () => {
     setLevel(current_level);
@@ -138,7 +138,7 @@ const startNewLevel = () => {
     total_score += count;
     count = 0;
 
-    alert("Ready...Set...Go!");
+    alerty.toasts("Ready...Set...Go!");
 
     // Starting value for level timer,
     const level_start = new Date().getTime();
@@ -151,11 +151,11 @@ const startNewLevel = () => {
 
         if (timer < 0) {
             clearInterval(t);
-            alert("Time's Up!");
+            alerty.alert("Time's Up!");
             end_game();
         }
         if (count >= target_score) {
-            alert("Congratulations! You have leveled up.");
+            alerty.alert("Congratulations! You have leveled up.");
             clearInterval(t);
             advanceLevel();
             startNewLevel();
