@@ -128,7 +128,7 @@ const end_game = () => {
     total_score += count;
     
     alerty.alert("You passed " + (current_level - 1) + " levels and earned a score of " + total_score + "!")
-
+};
 const startNewLevel = () => {
     setLevel(current_level);
     setCounter(0);
