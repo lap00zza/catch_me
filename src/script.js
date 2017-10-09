@@ -109,6 +109,7 @@ sound_toggle.addEventListener("click", ()=>{
     }
 });
 
+
 const setTargets = () => {
     target_time = 60; // seconds
     target_time_millis = target_time * 1000;
