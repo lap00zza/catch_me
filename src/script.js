@@ -63,7 +63,6 @@ active_diff_btn.classList.add("disabled");
 catch_me.style.position = "absolute";
 catch_me.style.height = catch_height + "px";
 catch_me.style.width = catch_width + "px";
-catch_me.style.backgroundColor = "#CE1836";
 mv_catch_x();
 mv_catch_y();
 
@@ -126,9 +125,8 @@ const advanceLevel = () => {
 
 const end_game = () => {
     total_score += count;
-    alert("You passed " + (current_level - 1) + " levels and earned a score of " + total_score + "!");
+    swal("Time's up!", "You passed " + (current_level - 1) + " levels and earned a score of " + total_score + "!");
 };
-
 const startNewLevel = () => {
     setLevel(current_level);
     setCounter(0);
@@ -138,7 +136,7 @@ const startNewLevel = () => {
     total_score += count;
     count = 0;
 
-    alert("Ready...Set...Go!");
+    swal("New level");
 
     // Starting value for level timer,
     const level_start = new Date().getTime();
@@ -151,11 +149,11 @@ const startNewLevel = () => {
 
         if (timer < 0) {
             clearInterval(t);
-            alert("Time's Up!");
+            swal("Time's Up!");
             end_game();
         }
         if (count >= target_score) {
-            alert("Congratulations! You have leveled up.");
+            swal("Congratulations!"," You have leveled up.");
             clearInterval(t);
             advanceLevel();
             startNewLevel();
@@ -168,7 +166,6 @@ const game = () => {
     catch_me.style.position = "absolute";
     catch_me.style.height = catch_height + "px";
     catch_me.style.width = catch_width + "px";
-    catch_me.style.backgroundColor = "#555";
     startNewLevel();
 };
 
