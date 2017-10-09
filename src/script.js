@@ -102,10 +102,10 @@ diff_btns.forEach(el => {
 sound_toggle.addEventListener("click", ()=>{
     if(audio.muted) {
         audio.muted = false;
-        toggle_icon.src = "icons/mute.png";
+        toggle_icon.src = "icons/mute.svg";
     } else {
         audio.muted = true;
-        toggle_icon.src = "icons/unmute.png";
+        toggle_icon.src = "icons/unmute.svg";
     }
 });
 

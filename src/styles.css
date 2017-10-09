@@ -1,0 +1,91 @@
+#header{
+            background-color: #009989;
+            display: block;
+            height: 100px;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-bottom: 8px;
+            padding-top: 1px;
+        }
+        #counter {
+            position: relative;
+            height: 40px;
+            padding: 0 20px;
+            font-size: 25pt;
+            color: white;
+            text-align: center;
+            background-color: #A3A948;
+            border-radius: 20px;
+            border: 1px solid #660066;
+            z-index: 100;
+            display: inline-block;
+            float: right;
+        }
+        #level_num {
+            float: left;
+            display: inline-block;
+            z-index: 100;
+            position: relative;
+            height: 40px;
+            padding: 0 20px;
+            font-size: 25pt;
+            color: white;
+            text-align: center;
+            background-color: #A3A948;
+            border-radius: 20px;
+            border: 1px solid #660066;
+
+        }
+        #level_description {
+            text-align: center;
+            z-index: 100;
+            position: relative;
+        }
+        #time_remaining {
+            text-align: center;
+            font-size: 26pt;
+            z-index: 100;
+            position: relative;
+        }
+        #toggle_icon {
+            height: 30px;
+        }
+        .difficulty {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            z-index: 100;
+        }
+        .body {
+            background: #009989;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+        }
+        .sound-toggle {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            z-index: 100;
+        }
+        .animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+            animation-name: rubberBand;
+        }
+        @keyframes rubberBand {
+            0% {transform: scale(1);}
+            30% {transform: scaleX(1.25) scaleY(0.75);}
+            40% {transform: scaleX(0.75) scaleY(1.25);}
+            60% {transform: scaleX(1.15) scaleY(0.85);}
+            100% {transform: scale(1);}
+        }
+        h2 {
+            height: 40px;
+            padding: 0 20px;
+            font-size: 16pt;
+            color: white;
+            text-align: center;
+        }
