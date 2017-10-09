@@ -6,10 +6,18 @@ const diff_enum = {
     EXTREME: 100,
 };
 
+const volume_enum = {
+    MUTED: 0,
+    LOW_VOLUME: 0.2,
+    MEDIUM_VOLUME: 0.6,
+    HIGH_VOLUME: 1
+};
+
 //Setting difficulty from url
 const url = new URL(window.location);
 let diff_param = url.searchParams.get("difficulty");
 diff_param = diff_param ? diff_param.toUpperCase() : "HARD";
+let volume_param = "MEDIUM_VOLUME";
 
 // Utility Functions
 const mv_x = (what, x) => what.style.left = x + "px",
@@ -26,12 +34,18 @@ const catch_me = document.getElementById("catch_me"),
     x = document.getElementById("count-sound"),
     level_num = document.getElementById("level_num"),
     level_description = document.getElementById("level_description"),
-    time_remaining = document.getElementById("time_remaining");
+    time_remaining = document.getElementById("time_remaining"),
+    music = document.getElementById("music"),
+    volume_btns = document.querySelectorAll(".volume"),
+    active_volume_btn = document.getElementById(volume_param);
 
 // Useful global values
 const catch_height = 50,
     catch_width = 100,
     difficulty = diff_enum[diff_param];
+
+// Set initial volume
+music.volume = volume_enum[volume_param];
 
 const incr_counter = () => {
     counter.classList.remove("animated");
@@ -59,6 +73,7 @@ let target_score, target_time, target_time_millis;
 
 // Initial State
 active_diff_btn.classList.add("disabled");
+active_volume_btn.classList.add("disabled");
 // start_chron();
 catch_me.style.position = "absolute";
 catch_me.style.height = catch_height + "px";
@@ -94,6 +109,14 @@ diff_btns.forEach(el => {
     })
 });
 
+volume_btns.forEach(el => {
+    el.addEventListener("click", e => {
+        console.log(volume_enum[e.target.id]);
+        music.volume = volume_enum[e.target.id];
+        volume_btns.forEach(el => el.classList.remove("disabled"));
+        e.target.classList.add("disabled");
+    });
+});
 
 const setTargets = () => {
     target_time = 60; // seconds

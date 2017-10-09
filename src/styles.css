@@ -72,6 +72,27 @@
     z-index: 100;
 }
 
+.options {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 100;
+}
+
+.options button {
+    background-color: #A3A948;
+    border-radius: 20px;
+    padding: 5px 10px;
+    color: white;
+    border: 1px solid #660066;
+    cursor: pointer;
+}
+
+.options button.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 #catch_me {
     background: url(nyan-cat.png) no-repeat;
     -webkit-background-size: cover;
