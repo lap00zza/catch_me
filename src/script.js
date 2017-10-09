@@ -27,6 +27,7 @@ const catch_me = document.getElementById("catch_me"),
     level_num = document.getElementById("level_num"),
     level_description = document.getElementById("level_description"),
     time_remaining = document.getElementById("time_remaining");
+    toggle_mute = document.getElementById("toggle_mute");
 
 // Useful global values
 const catch_height = 50,
@@ -56,6 +57,7 @@ let current_level = 1;
 let count = 0;
 let total_score = 0;
 let target_score, target_time, target_time_millis;
+let muted = false;
 
 // Initial State
 active_diff_btn.classList.add("disabled");
@@ -94,6 +96,17 @@ diff_btns.forEach(el => {
     })
 });
 
+toggle_mute.addEventListener("click", e => {
+  muted = !muted;
+  document.querySelectorAll('audio').forEach(function (audio) {
+    audio.muted = muted;
+  });
+  if (muted) {
+    toggle_mute.innerHTML = "Unmute";
+  } else {
+    toggle_mute.innerHTML = "Mute";
+  }
+});
 
 const setTargets = () => {
     target_time = 60; // seconds

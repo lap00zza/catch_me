@@ -6,6 +6,19 @@
 <html>
 <head>
     <meta charset="utf-8">
+        #toggle_mute {
+          bottom: 10px;
+          right: 10px;
+          position: absolute;
+          padding: 5px;
+          color: white;
+          text-align: center;
+          background-color: #A3A948;
+          border-radius: 20px;
+          border: 1px solid #660066;
+          cursor: pointer;
+        }
+    </style>
     <link rel="stylesheet" type="text/css" href="./styles.css">
 </head>
 <body>
@@ -25,6 +38,7 @@
             <button class="diff-btn" id="HARD">Hard</button>
             <button class="diff-btn" id="EXTREME">Extreme</button>
         </div>
+        <div id="toggle_mute">Muted</div>
     </div>
     <audio src="http://www.nyan.cat/music/technyancolor.ogg" autoplay loop></audio>
     <audio id="count-sound" src="http://freesound.org/data/previews/131/131660_2398403-lq.mp3"></audio>
