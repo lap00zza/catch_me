@@ -6,19 +6,26 @@
 }
 
 .diff-btn {
-    background-color: #4CAF50; /* Green */
-    border: none;
+    padding: 5px 10px;
     color: white;
-    padding: 15px 32px;
+    background-color: #A3A948;
+    border-radius: 20px;
+    border: 1px solid #660066;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+}  .diff-btn.disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+.difficulty>button {
+    cursor: pointer;
+}
+.difficulty>button:hover {
+    background-color: #8a8f35;
 }
 
 #counter {
     position: relative;
-    height: 40px;
     padding: 0 20px;
     font-size: 25pt;
     color: white;
@@ -36,7 +43,6 @@
     display: inline-block;
     z-index: 100;
     position: relative;
-    height: 40px;
     padding: 0 20px;
     font-size: 25pt;
     color: white;
@@ -118,4 +124,19 @@ h2 {
     font-size: 16pt;
     color: white;
     text-align: center;
+}
+
+@media (max-width: 479px) {
+    #level {
+        display: flex;
+        flex-direction: column;
+    }
+    #counter {
+        order: 2
+    }
+    #level>* {
+        flex: 1;
+        margin: 10px 0;
+        height: auto;
+    }
 }
