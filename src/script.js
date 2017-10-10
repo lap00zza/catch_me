@@ -98,8 +98,8 @@ diff_btns.forEach(el => {
 });
 
 //Mute/Unmute the backgroung music
-sound_toggle.addEventListener("click", ()=>{
-    if(audio.muted) {
+sound_toggle.addEventListener("click", () => {
+    if (audio.muted) {
         audio.muted = false;
         toggle_icon.src = "icons/mute.svg";
     } else {
@@ -167,7 +167,7 @@ const startNewLevel = () => {
             end_game();
         }
         if (count >= target_score) {
-            swal("Congratulations!"," You have leveled up.");
+            swal("Congratulations!", " You have leveled up.");
             clearInterval(t);
             advanceLevel();
             startNewLevel();
