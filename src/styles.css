@@ -12,15 +12,18 @@
     border-radius: 20px;
     border: 1px solid #660066;
     text-align: center;
-}  .diff-btn.disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-    }
+}
 
-.difficulty>button {
+.diff-btn.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.difficulty > button {
     cursor: pointer;
 }
-.difficulty>button:hover {
+
+.difficulty > button:hover {
     background-color: #8a8f35;
 }
 
@@ -65,6 +68,10 @@
     position: relative;
 }
 
+#toggle_icon {
+    height: 30px;
+}
+
 .difficulty {
     position: absolute;
     bottom: 10px;
@@ -100,6 +107,13 @@
     animation-name: rubberBand;
 }
 
+.sound-toggle {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 100;
+}
+
 @keyframes rubberBand {
     0% {
         transform: scale(1);
@@ -131,10 +145,12 @@ h2 {
         display: flex;
         flex-direction: column;
     }
+
     #counter {
         order: 2
     }
-    #level>* {
+
+    #level > * {
         flex: 1;
         margin: 10px 0;
         height: auto;
