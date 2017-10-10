@@ -19,6 +19,9 @@
     </div>
     <div class="body">
         <div id="catch_me" style="background-color: transparent !important"></div>
+        <button class="sound-toggle" id="sound-toggle">
+            <img id="toggle_icon" src="icons/mute.svg">
+        </button>
         <div class="difficulty">
             <button class="diff-btn" id="EASY">Easy</button>
             <button class="diff-btn" id="MEDIUM">Medium</button>
@@ -26,7 +29,7 @@
             <button class="diff-btn" id="EXTREME">Extreme</button>
         </div>
     </div>
-    <audio src="http://www.nyan.cat/music/technyancolor.ogg" autoplay loop></audio>
+    <audio id="back_sound" src="http://www.nyan.cat/music/technyancolor.ogg" autoplay loop></audio>
     <audio id="count-sound" src="http://freesound.org/data/previews/131/131660_2398403-lq.mp3"></audio>
 </body>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

@@ -22,6 +22,9 @@ const catch_me = document.getElementById("catch_me"),
     counter = document.getElementById("counter"),
     body = document.querySelectorAll(".body")[0],
     diff_btns = document.querySelectorAll(".diff-btn"),
+    sound_toggle = document.getElementById("sound-toggle"),
+    toggle_icon = document.getElementById("toggle_icon"),
+    audio = document.getElementById("back_sound"),
     active_diff_btn = document.getElementById(diff_param),
     x = document.getElementById("count-sound"),
     level_num = document.getElementById("level_num"),
@@ -94,6 +97,17 @@ diff_btns.forEach(el => {
     })
 });
 
+//Mute/Unmute the backgroung music
+sound_toggle.addEventListener("click", () => {
+    if (audio.muted) {
+        audio.muted = false;
+        toggle_icon.src = "icons/mute.svg";
+    } else {
+        audio.muted = true;
+        toggle_icon.src = "icons/unmute.svg";
+    }
+});
+
 
 const setTargets = () => {
     target_time = 60; // seconds
@@ -153,7 +167,7 @@ const startNewLevel = () => {
             end_game();
         }
         if (count >= target_score) {
-            swal("Congratulations!"," You have leveled up.");
+            swal("Congratulations!", " You have leveled up.");
             clearInterval(t);
             advanceLevel();
             startNewLevel();
