@@ -1,3 +1,7 @@
+* {
+    font-family: "Droid Sans";
+}
+
 #header {
     background-color: #009989;
     display: block;
