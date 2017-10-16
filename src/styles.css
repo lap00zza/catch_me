@@ -160,3 +160,10 @@ h2 {
         height: auto;
     }
 }
+
+#sound-toggle {
+    padding: 5px 10px;
+    background-color: #A3A948;
+    border-radius: 20px;
+    border: 1px solid #660066;
+}
