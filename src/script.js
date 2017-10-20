@@ -31,6 +31,14 @@ const catch_me = document.getElementById("catch_me"),
     level_description = document.getElementById("level_description"),
     time_remaining = document.getElementById("time_remaining");
 
+// Cached audio
+if (sessionStorage.getItem("cachedAudio") != null) {
+    var cachedAudio = sessionStorage.getItem("cachedAudio") == "true";
+    audio.muted = cachedAudio;
+    if (audio.muted) toggle_icon.src = "icons/unmute.svg";
+    else toggle_icon.src = "icons/mute.svg";
+}
+
 // Useful global values
 const catch_height = 50,
     catch_width = 100,
@@ -101,10 +109,12 @@ diff_btns.forEach(el => {
 sound_toggle.addEventListener("click", () => {
     if (audio.muted) {
         audio.muted = false;
-        toggle_icon.src = "icons/mute.svg";
+	sessionStorage.setItem("cachedAudio", false);
+	toggle_icon.src = "icons/mute.svg";
     } else {
         audio.muted = true;
-        toggle_icon.src = "icons/unmute.svg";
+	sessionStorage.setItem("cachedAudio", true);
+	toggle_icon.src = "icons/unmute.svg";
     }
 });
 
