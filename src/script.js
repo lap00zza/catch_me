@@ -165,29 +165,37 @@ const startNewLevel = () => {
     total_score += count;
     count = 0;
 
-    swal("New level");
+    swal("New level").then((value)=>{
+        if (value){
 
-    // Starting value for level timer,
-    const level_start = new Date().getTime();
-
-    const t = setInterval(function () {
-        // Get today's date and time
-        const now = new Date().getTime();
-        let timer = target_time_millis + (level_start - now);
-        displayTimer(timer);
-
-        if (timer < 0) {
-            clearInterval(t);
-            swal("Time's Up!");
-            end_game();
+        // Starting value for level timer,
+        const level_start = new Date().getTime();
+    
+        const t = setInterval(function () {
+            // Get today's date and time
+            const now = new Date().getTime();
+            let timer = target_time_millis + (level_start - now);
+            displayTimer(timer);
+    
+            if (timer < 0) {
+                clearInterval(t);
+                swal("Time's Up!");
+                end_game();
+            }
+            if (count >= target_score) {
+                swal("Congratulations!", " You have leveled up.");
+                clearInterval(t);
+                advanceLevel();
+                startNewLevel();
+            }
+        }, 100);
         }
-        if (count >= target_score) {
-            swal("Congratulations!", " You have leveled up.");
-            clearInterval(t);
-            advanceLevel();
-            startNewLevel();
-        }
-    }, 100);
+    })
+
+    // swal("Choose a level dificulty", {
+    //     buttons: ["Easy", "Medium", "Hard", "Extreme"]
+    // })
+
 };
 
 const game = () => {
