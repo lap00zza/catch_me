@@ -45,12 +45,16 @@ const catch_height = 50,
     difficulty = diff_enum[diff_param];
 
 const incr_counter = () => {
+
     counter.classList.remove("animated");
     count++;
     setCounter(count);
     counter.classList.add("animated");
+
+
     x.play();
     setTimeout(() => {
+
         x.pause();
         x.currentTime = 0;
     }, 800);
@@ -83,6 +87,7 @@ catch_me.addEventListener("mouseenter", () => {
     mv_catch_x();
     mv_catch_y();
     incr_counter();
+    counter.classList.add("levelUp");
 });
 
 // Track mouse movement inside body.
