@@ -45,6 +45,11 @@
     float: right;
 }
 
+.levelUp{
+  background-color: #14529b;
+  
+}
+
 #level_num {
     float: left;
     display: inline-block;
