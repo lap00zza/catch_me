@@ -83,25 +83,51 @@ mv_catch_y();
 
 // If you can get your mouse inside here you get a point.
 // But the question is, can you? ;)
-catch_me.addEventListener("mouseenter", () => {
+const respawn = () => {
     mv_catch_x();
     mv_catch_y();
     incr_counter();
     counter.classList.add("levelUp");
-});
+};
 
 // Track mouse movement inside body.
 body.addEventListener("mousemove", e => {
     const delta_x = e.offsetX - catch_me.offsetLeft,
         delta_y = e.offsetY - catch_me.offsetTop,
-        xInRange = inRange(-difficulty, difficulty + catch_width, delta_x),
-        yInRange = inRange(-difficulty, difficulty + catch_height, delta_y);
-    if (xInRange && yInRange) {
+        xInDodgeRange = inRange(-difficulty, difficulty + catch_width, delta_x),
+        yInDodgeRange = inRange(-difficulty, difficulty + catch_height, delta_y);
+        xInCatchRange = inRange(-20, 20 + catch_width, delta_x),
+        yInCatchRange = inRange(-20, 20 + catch_height, delta_y);
+    if (xInDodgeRange && yInDodgeRange) {
         mv_catch_x();
         mv_catch_y();
         // console.log(`x: ${delta_x} y: ${delta_y}`);
     }
+    if (xInCatchRange && yInCatchRange) {
+        respawn();
+    }
 });
+
+body.addEventListener("touchmove", e => {
+    const delta_x = e.targetTouches[0].clientX - catch_me.offsetLeft,
+        delta_y = e.targetTouches[0].clientY - catch_me.offsetTop,
+        xInDodgeRange = inRange(-difficulty, difficulty + catch_width, delta_x),
+        yInDodgeRange = inRange(-difficulty, difficulty + catch_height, delta_y);
+        xInCatchRange = inRange(-20, 20 + catch_width, delta_x),
+        yInCatchRange = inRange(-20, 20 + catch_height, delta_y);
+    if (xInDodgeRange && yInDodgeRange) {
+        mv_catch_x();
+        mv_catch_y();
+        // console.log(`x: ${delta_x} y: ${delta_y}`);
+    }
+    if (xInCatchRange && yInCatchRange) {
+        respawn();
+    }
+});
+
+body.addEventListener("touchend", function() {
+    swal("You must hold your finger down!");
+}, false);
 
 diff_btns.forEach(el => {
     el.addEventListener("click", e => {
@@ -114,12 +140,12 @@ diff_btns.forEach(el => {
 sound_toggle.addEventListener("click", () => {
     if (audio.muted) {
         audio.muted = false;
-	sessionStorage.setItem("cachedAudio", false);
-	toggle_icon.src = "icons/mute.svg";
+        sessionStorage.setItem("cachedAudio", false);
+        toggle_icon.src = "icons/mute.svg";
     } else {
         audio.muted = true;
-	sessionStorage.setItem("cachedAudio", true);
-	toggle_icon.src = "icons/unmute.svg";
+        sessionStorage.setItem("cachedAudio", true);
+        toggle_icon.src = "icons/unmute.svg";
     }
 });
 
@@ -165,32 +191,27 @@ const startNewLevel = () => {
     total_score += count;
     count = 0;
 
-    swal("New level").then((value)=>{
-        if (value){
+    swal("New level");
+    const level_start = new Date().getTime();
 
-        // Starting value for level timer,
-        const level_start = new Date().getTime();
-    
-        const t = setInterval(function () {
-            // Get today's date and time
-            const now = new Date().getTime();
-            let timer = target_time_millis + (level_start - now);
-            displayTimer(timer);
-    
-            if (timer < 0) {
-                clearInterval(t);
-                swal("Time's Up!");
-                end_game();
-            }
-            if (count >= target_score) {
-                swal("Congratulations!", " You have leveled up.");
-                clearInterval(t);
-                advanceLevel();
-                startNewLevel();
-            }
-        }, 100);
+    const t = setInterval(function() {
+        // Get today's date and time
+        const now = new Date().getTime();
+        let timer = target_time_millis + (level_start - now);
+        displayTimer(timer);
+
+        if (timer < 0) {
+            clearInterval(t);
+            swal("Time's Up!");
+            end_game();
         }
-    })
+        if (count >= target_score) {
+            swal("Congratulations!", " You have leveled up.");
+            clearInterval(t);
+            advanceLevel();
+            startNewLevel();
+        }
+    }, 100);
 
     // swal("Choose a level dificulty", {
     //     buttons: ["Easy", "Medium", "Hard", "Extreme"]
