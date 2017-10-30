@@ -66,6 +66,7 @@ const rand_x = () => rand(window.innerWidth - catch_width),
     mv_catch_y = () => mv_y(catch_me, rand_y());
 
 
+let ignoreTouchUp = false;
 // Variables for level scoring/timing
 let current_level = 1;
 let count = 0;
@@ -126,7 +127,9 @@ body.addEventListener("touchmove", e => {
 });
 
 body.addEventListener("touchend", function() {
-    swal("You must hold your finger down!");
+    if (!ignoreTouchUp) {
+        swal("You must hold your finger down!");
+    }
 }, false);
 
 diff_btns.forEach(el => {
@@ -190,34 +193,42 @@ const startNewLevel = () => {
     mv_catch_y();
     total_score += count;
     count = 0;
+    ignoreTouchUp = true;
 
-    swal("New level");
-    const level_start = new Date().getTime();
+    swal("New level").then((value)=>{
+        if (value){
+        ignoreTouchUp = false;
 
-    const t = setInterval(function() {
-        // Get today's date and time
-        const now = new Date().getTime();
-        let timer = target_time_millis + (level_start - now);
-        displayTimer(timer);
-
-        if (timer < 0) {
-            clearInterval(t);
-            swal("Time's Up!");
-            end_game();
+        // Starting value for level timer,
+        const level_start = new Date().getTime();
+    
+        const t = setInterval(function () {
+            // Get today's date and time
+            const now = new Date().getTime();
+            let timer = target_time_millis + (level_start - now);
+            displayTimer(timer);
+    
+            if (timer < 0) {
+                clearInterval(t);
+                swal("Time's Up!");
+                end_game();
+            }
+            if (count >= target_score) {
+                swal("Congratulations!", " You have leveled up.");
+                clearInterval(t);
+                advanceLevel();
+                startNewLevel();
+            }
+        }, 100);
         }
-        if (count >= target_score) {
-            swal("Congratulations!", " You have leveled up.");
-            clearInterval(t);
-            advanceLevel();
-            startNewLevel();
-        }
-    }, 100);
+    })
 
     // swal("Choose a level dificulty", {
     //     buttons: ["Easy", "Medium", "Hard", "Extreme"]
     // })
 
 };
+
 
 const game = () => {
     // Initial State
