@@ -34,7 +34,7 @@
 #counter {
     position: relative;
     padding: 0 20px;
-    font-size: 25pt;
+    font-size: inherit;
     color: white;
     text-align: center;
     background-color: #A3A948;
@@ -56,7 +56,7 @@
     z-index: 100;
     position: relative;
     padding: 0 20px;
-    font-size: 25pt;
+    font-size: inherit;
     color: white;
     text-align: center;
     background-color: #A3A948;
@@ -68,13 +68,15 @@
     text-align: center;
     z-index: 100;
     position: relative;
+    line-height: 0;
 }
 
 #time_remaining {
     text-align: center;
-    font-size: 26pt;
+    font-size: inherit;
     z-index: 100;
     position: relative;
+    line-height: 0;
 }
 
 #toggle_icon {
@@ -143,16 +145,21 @@
 
 h2 {
     height: 40px;
-    padding: 0 20px;
     font-size: 16pt;
     color: white;
     text-align: center;
+}
+
+#level {
+    font-size: 25pt;
+    pointer-events:none;
 }
 
 @media (max-width: 479px) {
     #level {
         display: flex;
         flex-direction: column;
+        font-size: 15pt;
     }
 
     #counter {
@@ -161,7 +168,6 @@ h2 {
 
     #level > * {
         flex: 1;
-        margin: 10px 0;
         height: auto;
     }
 }
